@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useMemo, useEffect } from "react"
 import { Github, Clock, ExternalLink } from "lucide-react"
 
 interface Project {
@@ -60,6 +60,24 @@ export function ProjectsConstellation() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [hoveredProject, setHoveredProject] = useState<string | null>(null)
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Generate stable random values for background stars only on the client
+  const bgStars = useMemo(() => {
+    if (!mounted) return []
+    return Array.from({ length: 20 }).map((_, i) => ({
+      left: `${((i * 37 + 13) % 100)}%`,
+      top: `${((i * 53 + 7) % 100)}%`,
+      width: `${(i % 3) + 1}px`,
+      height: `${(i % 3) + 1}px`,
+      duration: 2 + (i % 3),
+      delay: (i * 0.2) % 2,
+    }))
+  }, [mounted])
 
   return (
     <section id="projects" className="relative py-32 px-6">
@@ -121,22 +139,22 @@ export function ProjectsConstellation() {
           </svg>
 
           {/* Scattered background stars */}
-          {Array.from({ length: 20 }).map((_, i) => (
+          {bgStars.map((star, i) => (
             <motion.div
               key={`bg-star-${i}`}
               className="absolute rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                width: `${Math.random() * 3 + 1}px`,
-                height: `${Math.random() * 3 + 1}px`,
+                left: star.left,
+                top: star.top,
+                width: star.width,
+                height: star.height,
                 backgroundColor: "rgba(200, 210, 255, 0.3)",
               }}
               animate={{ opacity: [0.2, 0.8, 0.2] }}
               transition={{
-                duration: Math.random() * 3 + 2,
+                duration: star.duration,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: star.delay,
               }}
             />
           ))}
