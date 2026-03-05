@@ -233,7 +233,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
         <ParallaxLayer depth={-0.15}>
           <div className="relative">
             <h1
-              className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold leading-[1.05] tracking-tight text-balance"
+              className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold leading-[1.05] tracking-tight whitespace-nowrap"
               style={{
                 color: "#f1f5f9",
                 textShadow:
@@ -241,16 +241,9 @@ export function Hero({ isReady }: { isReady: boolean }) {
               }}
             >
               <AnimatedText
-                text="Nithya Shree"
+                text="Nithya Shree A"
                 isReady={showContent}
                 delay={0.5}
-              />
-              <br />
-              <AnimatedText
-                text="A"
-                isReady={showContent}
-                delay={1.1}
-                className="bg-clip-text"
               />
             </h1>
 
