@@ -51,12 +51,12 @@ function AnimatedText({
 
 /* ── orbiting tech labels ── */
 const orbitItems = [
-  { label: "Python", angle: 0, radius: 280, color: "#3b82f6" },
-  { label: "C++", angle: 60, radius: 260, color: "#7c3aed" },
-  { label: "React", angle: 120, radius: 290, color: "#06b6d4" },
-  { label: "Linux", angle: 180, radius: 270, color: "#8b5cf6" },
-  { label: "Git", angle: 240, radius: 285, color: "#3b82f6" },
-  { label: "AI/ML", angle: 300, radius: 265, color: "#a855f7" },
+  { label: "Python", angle: 0, radius: 420, color: "#3b82f6" },
+  { label: "C++", angle: 60, radius: 400, color: "#7c3aed" },
+  { label: "React", angle: 120, radius: 430, color: "#06b6d4" },
+  { label: "Linux", angle: 180, radius: 410, color: "#8b5cf6" },
+  { label: "Git", angle: 240, radius: 425, color: "#3b82f6" },
+  { label: "AI/ML", angle: 300, radius: 405, color: "#a855f7" },
 ]
 
 function OrbitingLabels({ isReady }: { isReady: boolean }) {
@@ -70,7 +70,7 @@ function OrbitingLabels({ isReady }: { isReady: boolean }) {
         const rad = ((item.angle + 15) * Math.PI) / 180
         // Position on an ellipse
         const x = Math.cos(rad) * item.radius
-        const y = Math.sin(rad) * item.radius * 0.45
+        const y = Math.sin(rad) * item.radius * 0.55
 
         return (
           <motion.div
@@ -160,7 +160,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden"
     >
       {/* ── Layer 0: Particle vortex ── */}
       <HeroVortex isReady={isReady} />
@@ -209,7 +209,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={showContent ? { opacity: 1, y: 0, scale: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="mb-10"
+          className="mb-8"
         >
           <div
             className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full text-sm font-medium"
@@ -290,7 +290,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
               : {}
           }
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="mt-10 text-base sm:text-lg md:text-xl font-medium tracking-wide"
+          className="mt-7 text-base sm:text-lg md:text-xl font-medium tracking-wide"
           style={{ color: "#c4b5fd" }}
         >
           {"ECE Engineer \u2022 Open Source Contributor \u2022 Problem Solver"}
@@ -317,7 +317,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
           initial={{ opacity: 0, y: 30 }}
           animate={showContent ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 2 }}
-          className="mt-14 flex flex-col sm:flex-row gap-5"
+          className="mt-10 flex flex-col sm:flex-row gap-5"
         >
           {/* Primary: GitHub */}
           <MagneticButton
@@ -397,7 +397,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
           initial={{ opacity: 0 }}
           animate={showContent ? { opacity: 1 } : {}}
           transition={{ delay: 3, duration: 1.2 }}
-          className="mt-20"
+          className="mt-12"
         >
           <motion.a
             href="#skills"
