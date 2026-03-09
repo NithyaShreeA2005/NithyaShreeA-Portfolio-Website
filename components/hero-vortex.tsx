@@ -30,11 +30,15 @@ export function HeroVortex({ isReady }: { isReady: boolean }) {
     const particles: Particle[] = []
     const cx = w / 2
     const cy = h / 2
-    const count = Math.min(Math.floor((w * h) / 8000), 180)
+    // Reduce particle count on mobile for better performance
+    const baseCount = w < 640 ? Math.floor((w * h) / 12000) : Math.floor((w * h) / 8000)
+    const count = Math.min(baseCount, w < 640 ? 100 : 180)
 
     for (let i = 0; i < count; i++) {
       const layer = i < count * 0.25 ? 0 : i < count * 0.6 ? 1 : 2
-      const orbit = 60 + Math.random() * Math.min(w, h) * 0.48
+      // Scale orbit radius based on viewport size
+      const orbitScale = Math.min(w, h) * (w < 640 ? 0.35 : 0.48)
+      const orbit = 60 + Math.random() * orbitScale
       const angle = Math.random() * Math.PI * 2
 
       particles.push({
