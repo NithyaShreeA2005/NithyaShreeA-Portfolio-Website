@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, useCallback } from "react"
 import { Github, Download, ArrowDown, Sparkles } from "lucide-react"
 import { HeroVortex } from "./hero-vortex"
 import { MagneticButton } from "./magnetic-button"
@@ -60,6 +60,22 @@ const orbitItems = [
 ]
 
 function OrbitingLabels({ isReady }: { isReady: boolean }) {
+  const [scale, setScale] = useState(1)
+  
+  useEffect(() => {
+    const updateScale = () => {
+      // Scale orbits based on viewport width
+      if (window.innerWidth < 1024) {
+        setScale(0.6)
+      } else {
+        setScale(1)
+      }
+    }
+    updateScale()
+    window.addEventListener('resize', updateScale)
+    return () => window.removeEventListener('resize', updateScale)
+  }, [])
+  
   return (
     <div
       className="absolute inset-0 pointer-events-none"
@@ -68,14 +84,15 @@ function OrbitingLabels({ isReady }: { isReady: boolean }) {
     >
       {orbitItems.map((item, i) => {
         const rad = ((item.angle + 15) * Math.PI) / 180
-        // Position on an ellipse
-        const x = Math.cos(rad) * item.radius
-        const y = Math.sin(rad) * item.radius * 0.55
+        // Position on an ellipse, scaled for responsiveness
+        const radius = item.radius * scale
+        const x = Math.cos(rad) * radius
+        const y = Math.sin(rad) * radius * 0.55
 
         return (
           <motion.div
             key={item.label}
-            className="absolute left-1/2 top-1/2 hidden lg:block"
+            className="absolute left-1/2 top-1/2 hidden md:block"
             initial={{ opacity: 0, scale: 0 }}
             animate={
               isReady
@@ -160,7 +177,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
     <section
       ref={sectionRef}
       id="hero"
-      className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden"
+      className="relative h-screen min-h-[600px] sm:min-h-[700px] flex items-center justify-center overflow-hidden"
     >
       {/* ── Layer 0: Particle vortex ── */}
       <HeroVortex isReady={isReady} />
@@ -201,7 +218,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
 
       {/* ── Layer 4: Main content ── */}
       <div
-        className="relative flex flex-col items-center text-center px-6 max-w-5xl mx-auto"
+        className="relative flex flex-col items-center text-center px-4 sm:px-6 max-w-4xl mx-auto w-full"
         style={{ zIndex: 10 }}
       >
         {/* Status badge */}
@@ -233,7 +250,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
         <ParallaxLayer depth={-0.15}>
           <div className="relative">
             <h1
-              className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-bold leading-[1.05] tracking-tight whitespace-nowrap"
+              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.5rem] font-bold leading-[1.1] tracking-tight"
               style={{
                 color: "#f1f5f9",
                 textShadow:
@@ -290,7 +307,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
               : {}
           }
           transition={{ duration: 0.8, delay: 1.4 }}
-          className="mt-7 text-base sm:text-lg md:text-xl font-medium tracking-wide"
+          className="mt-5 sm:mt-7 text-sm sm:text-base md:text-lg lg:text-xl font-medium tracking-wide"
           style={{ color: "#c4b5fd" }}
         >
           {"ECE Engineer \u2022 Open Source Contributor \u2022 Problem Solver"}
@@ -305,7 +322,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
               : {}
           }
           transition={{ duration: 0.8, delay: 1.7 }}
-          className="mt-4 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed text-pretty"
+          className="mt-3 sm:mt-4 text-xs sm:text-sm md:text-base lg:text-lg max-w-2xl leading-relaxed text-pretty"
           style={{ color: "#94a3b8" }}
         >
           Exploring ideas, connecting technologies, and building solutions
@@ -317,7 +334,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
           initial={{ opacity: 0, y: 30 }}
           animate={showContent ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.9, delay: 2 }}
-          className="mt-10 flex flex-col sm:flex-row gap-5"
+          className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-5 w-full sm:w-auto"
         >
           {/* Primary: GitHub */}
           <MagneticButton
@@ -325,7 +342,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
             target="_blank"
             rel="noopener noreferrer"
             strength={0.3}
-            className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-medium transition-all duration-300 overflow-hidden"
+            className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-3 sm:py-4 rounded-2xl font-medium text-sm sm:text-base transition-all duration-300 overflow-hidden flex-1 sm:flex-none"
           >
             <span
               className="absolute inset-0 rounded-2xl transition-all duration-500"
@@ -366,7 +383,7 @@ export function Hero({ isReady }: { isReady: boolean }) {
             href="/NithyaShreeA_Resume.pdf"
             download
             strength={0.3}
-            className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-medium transition-all duration-300 overflow-hidden"
+            className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-8 py-3 sm:py-4 rounded-2xl font-medium text-sm sm:text-base transition-all duration-300 overflow-hidden flex-1 sm:flex-none"
           >
             <span
               className="absolute inset-0 rounded-2xl transition-all duration-500"
