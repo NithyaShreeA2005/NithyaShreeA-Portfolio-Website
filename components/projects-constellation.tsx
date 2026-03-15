@@ -80,18 +80,18 @@ export function ProjectsConstellation() {
   }, [mounted])
 
   return (
-    <section id="projects" className="relative py-32 px-6">
+    <section id="projects" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6">
       <div ref={ref} className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground text-glow">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-foreground text-glow">
             Projects Constellation
           </h2>
-          <p className="mt-4 text-muted-foreground text-lg">
+          <p className="mt-3 sm:mt-4 text-muted-foreground text-sm sm:text-base md:text-lg">
             Hover over the stars to explore
           </p>
         </motion.div>
@@ -101,7 +101,7 @@ export function ProjectsConstellation() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.3 }}
-          className="relative w-full aspect-[16/9] max-h-[500px]"
+          className="relative w-full aspect-[16/9] max-h-[300px] sm:max-h-[400px] md:max-h-[500px]"
         >
           {/* SVG connection lines */}
           <svg className="absolute inset-0 w-full h-full" aria-hidden="true">

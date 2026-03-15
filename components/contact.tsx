@@ -33,18 +33,18 @@ export function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="contact" className="relative py-32 px-6">
+    <section id="contact" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6">
       <div ref={ref} className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground text-glow">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-foreground text-glow">
             {"Let's Connect"}
           </h2>
-          <p className="mt-4 text-muted-foreground text-lg">
+          <p className="mt-3 sm:mt-4 text-muted-foreground text-sm sm:text-base md:text-lg">
             {"Open to collaborations, opportunities, and conversations"}
           </p>
         </motion.div>
@@ -53,20 +53,20 @@ export function Contact() {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="glass-strong rounded-3xl p-8 md:p-12 glow-purple"
+          className="glass-strong rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 glow-purple"
         >
           {/* Name header */}
-          <div className="text-center mb-10">
-            <h3 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
+          <div className="text-center mb-8 sm:mb-10">
+            <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-foreground">
               Nithya Shree A
             </h3>
-            <p className="text-primary mt-2 font-medium">
+            <p className="text-primary mt-1 sm:mt-2 font-medium text-sm sm:text-base">
               {'ECE Engineer \u2022 Problem Solver'}
             </p>
           </div>
 
           {/* Contact links */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             {links.map((link, index) => (
               <motion.a
                 key={link.label}
@@ -76,7 +76,7 @@ export function Contact() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.15 + 0.4 }}
-                className="group flex items-center gap-4 p-4 rounded-xl transition-all duration-300 hover:-translate-y-0.5"
+                className="group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-lg sm:rounded-xl transition-all duration-300 hover:-translate-y-0.5"
                 style={{
                   background: "rgba(15, 15, 40, 0.4)",
                   border: "1px solid rgba(124, 58, 237, 0.1)",
@@ -91,20 +91,20 @@ export function Contact() {
                 }}
               >
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
+                  className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
                   style={{ backgroundColor: `${link.color}15` }}
                 >
-                  <link.icon className="w-5 h-5" style={{ color: link.color }} />
+                  <link.icon className="w-4 sm:w-5 h-4 sm:h-5" style={{ color: link.color }} />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">
                     {link.label}
                   </div>
-                  <div className="text-foreground font-medium truncate">
+                  <div className="text-sm sm:text-base text-foreground font-medium truncate">
                     {link.value}
                   </div>
                 </div>
-                <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                <ExternalLink className="w-3 sm:w-4 h-3 sm:h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
               </motion.a>
             ))}
           </div>
@@ -114,14 +114,14 @@ export function Contact() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="mt-8 flex justify-center"
+            className="mt-6 sm:mt-8 flex justify-center"
           >
             <a
               href="/NithyaShreeA_Resume.pdf"
               download
-              className="inline-flex items-center gap-3 px-8 py-4 rounded-xl bg-primary text-primary-foreground font-medium transition-all duration-300 hover:scale-105 glow-purple"
+              className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl bg-primary text-primary-foreground font-medium text-sm sm:text-base transition-all duration-300 hover:scale-105 glow-purple"
             >
-              <Download className="w-5 h-5" />
+              <Download className="w-4 sm:w-5 h-4 sm:h-5" />
               Download Resume
             </a>
           </motion.div>
