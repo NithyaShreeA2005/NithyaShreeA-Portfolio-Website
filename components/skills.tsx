@@ -30,23 +30,23 @@ export function Skills() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="skills" className="relative py-32 px-6">
+    <section id="skills" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6">
       <div ref={ref} className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground text-glow">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-foreground text-glow">
             Skills & Expertise
           </h2>
-          <p className="mt-4 text-muted-foreground text-lg">
+          <p className="mt-3 sm:mt-4 text-muted-foreground text-sm sm:text-base md:text-lg">
             Technologies and domains I work with
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {skills.map((skill, index) => (
             <motion.div
               key={skill.name}
@@ -56,7 +56,7 @@ export function Skills() {
               className="group relative"
             >
               <div
-                className="glass rounded-2xl p-6 flex flex-col items-center gap-4 transition-all duration-500 hover:-translate-y-2 cursor-default"
+                className="glass rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col items-center gap-3 sm:gap-4 transition-all duration-500 hover:-translate-y-1 sm:hover:-translate-y-2 cursor-default"
                 style={{
                   boxShadow: "0 0 0 rgba(0,0,0,0)",
                 }}
@@ -70,15 +70,15 @@ export function Skills() {
                 }}
               >
                 <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-500"
+                  className="w-10 sm:w-12 md:w-14 h-10 sm:h-12 md:h-14 rounded-lg sm:rounded-xl flex items-center justify-center transition-all duration-500"
                   style={{ backgroundColor: `${skill.color}15` }}
                 >
                   <skill.icon
-                    className="w-7 h-7 transition-all duration-500 group-hover:scale-110"
+                    className="w-5 sm:w-6 md:w-7 h-5 sm:h-6 md:h-7 transition-all duration-500 group-hover:scale-110"
                     style={{ color: skill.color }}
                   />
                 </div>
-                <span className="text-sm md:text-base font-medium text-foreground text-center">
+                <span className="text-xs sm:text-sm md:text-base font-medium text-foreground text-center">
                   {skill.name}
                 </span>
               </div>

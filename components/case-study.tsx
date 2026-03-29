@@ -48,18 +48,18 @@ export function CaseStudy() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="approach" className="relative py-32 px-6">
+    <section id="approach" className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6">
       <div ref={ref} className="max-w-6xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
         >
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-foreground text-glow">
+          <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-foreground text-glow">
             Problem Solving Approach
           </h2>
-          <p className="mt-4 text-muted-foreground text-lg">
+          <p className="mt-3 sm:mt-4 text-muted-foreground text-sm sm:text-base md:text-lg">
             A structured methodology for creating impact
           </p>
         </motion.div>
@@ -93,7 +93,7 @@ export function CaseStudy() {
             })}
           </svg>
 
-          <div className="relative z-10 grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4">
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 md:gap-4">
             {stages.map((stage, index) => (
               <motion.div
                 key={stage.title}
@@ -105,7 +105,7 @@ export function CaseStudy() {
                 {/* Node */}
                 <motion.div
                   whileHover={{ scale: 1.1 }}
-                  className="relative w-20 h-20 rounded-full flex items-center justify-center mb-4 transition-all duration-500"
+                  className="relative w-14 sm:w-16 md:w-20 h-14 sm:h-16 md:h-20 rounded-full flex items-center justify-center mb-3 sm:mb-4 transition-all duration-500"
                   style={{
                     background: `radial-gradient(circle, ${stage.color}30 0%, ${stage.color}10 70%)`,
                     border: `2px solid ${stage.color}50`,
@@ -117,7 +117,7 @@ export function CaseStudy() {
                     e.currentTarget.style.boxShadow = "none"
                   }}
                 >
-                  <stage.icon className="w-8 h-8" style={{ color: stage.color }} />
+                  <stage.icon className="w-6 sm:w-7 md:w-8 h-6 sm:h-7 md:h-8" style={{ color: stage.color }} />
                   
                   {/* Pulse ring */}
                   <motion.div
@@ -128,10 +128,10 @@ export function CaseStudy() {
                   />
                 </motion.div>
 
-                <h3 className="font-serif text-lg font-semibold text-foreground mb-2">
+                <h3 className="font-serif text-base sm:text-lg font-semibold text-foreground mb-1 sm:mb-2">
                   {stage.title}
                 </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed max-w-[200px]">
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed max-w-[180px] sm:max-w-[200px]">
                   {stage.description}
                 </p>
 
